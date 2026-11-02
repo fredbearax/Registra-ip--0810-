@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './RegistrarObra.css'; // Opcional para tus estilos
+import { generarCertificadoPdf } from '../utils/generarCertificado';
 
 export default function RegistrarObra() {
   const [paso, setPaso] = useState(1);
@@ -149,14 +150,39 @@ export default function RegistrarObra() {
 
       {/* PASO 4: Confirmación Final */}
       {paso === 4 && (
-        <div className="step-content" style={{ textAlign: 'center' }}>
-          <h3>¡Registro Exitoso!</h3>
-          <p>Tu obra ha sido guardada correctamente en el servidor.</p>
-          <div style={{ background: '#e8f5e9', padding: '1rem', margin: '1rem 0', borderRadius: '8px' }}>
-            <strong>Folio Asignado:</strong> <span style={{ fontSize: '1.2rem', color: '#1b4d3e' }}>{folioGenerado || 'OBRA-0810-001'}</span>
-          </div>
-        </div>
-      )}
+  <div className="step-content" style={{ textAlign: 'center' }}>
+    <h3>¡Registro Exitoso!</h3>
+    <p>Tu obra ha sido guardada correctamente en el servidor.</p>
+    
+    <div style={{ background: '#e8f5e9', padding: '1rem', margin: '1rem 0', borderRadius: '8px' }}>
+      <strong>Folio Asignado:</strong> <span style={{ fontSize: '1.2rem', color: '#1b4d3e' }}>{folioGenerado}</span>
+    </div>
+
+    {/* 2. Colocas el botón aquí para que el usuario descargue su certificado inmediatamente */}
+    <button 
+      onClick={() => generarCertificadoPdf({
+        folio: folioGenerado,
+        titulo: formData.titulo,
+        categoria: formData.categoria,
+        descripcion: formData.descripcion,
+        autor: formData.autor
+      })}
+      style={{
+        padding: '12px 24px',
+        background: '#1b4d3e',
+        color: '#fff',
+        border: 'none',
+        borderRadius: '6px',
+        cursor: 'pointer',
+        fontSize: '1rem',
+        fontWeight: 'bold',
+        marginTop: '1rem'
+      }}
+    >
+      📥 Descargar certificado en PDF
+    </button>
+  </div>
+)}
 
       {/* Botones de Navegación */}
       <div className="wizard-actions" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
