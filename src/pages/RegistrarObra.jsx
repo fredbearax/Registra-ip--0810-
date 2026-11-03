@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import './RegistrarObra.css'; // Opcional para tus estilos
+
 import { generarCertificadoPdf } from '../utils/generarCertificado';
+
 
 export default function RegistrarObra() {
   const [paso, setPaso] = useState(1);

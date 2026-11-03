@@ -11,7 +11,7 @@ export const generarCertificadoPdf = async (obra) => {
 
     // 1. Fondo y Marco decorativo del diploma
     doc.setLineWidth(1.5);
-    doc.setStrokeColor(27, 77, 62); // Color verde institucional (#1b4d3e)
+    doc.setDrawColor(27, 77, 62); // Color verde institucional (#1b4d3e)
     doc.rect(10, 10, 277, 190);
 
     doc.setLineWidth(0.5);
